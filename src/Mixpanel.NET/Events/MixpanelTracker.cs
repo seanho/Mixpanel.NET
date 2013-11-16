@@ -1,7 +1,8 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Web.Script.Serialization;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Mixpanel.NET.Events
 {
@@ -25,7 +26,7 @@ namespace Mixpanel.NET.Events
             _options = options ?? new TrackerOptions();
         }
 
-        public bool Track(string @event, IDictionary<string, object> properties)
+        public async Task<bool> Track(string @event, IDictionary<string, object> properties)
         {
             var propertyBag = new Dictionary<string, object>(properties);
             // Standardize token and time values for Mixpanel
@@ -40,9 +41,7 @@ namespace Mixpanel.NET.Events
                 propertyBag.Remove("Time");
             }
 
-            var data =
-                new JavaScriptSerializer()
-                .Serialize(new Dictionary<string, object>
+            var data = JsonConvert.SerializeObject(new Dictionary<string, object>
                 {
                     { "event", @event },
                     { "properties", propertyBag }
@@ -52,19 +51,25 @@ namespace Mixpanel.NET.Events
 
             if (_options.Test) values += "&test=1";
 
-            var contents = _options.UseGet
-              ? http.Get(Resources.Track(_options.ProxyUrl), values)
-              : http.Post(Resources.Track(_options.ProxyUrl), values);
+            string contents = null;
+            if (_options.UseGet)
+            {
+                contents = await http.Get(Resources.Track(_options.ProxyUrl), values);
+            }
+            else
+            {
+                contents = await http.Post(Resources.Track(_options.ProxyUrl), values);
+            }
 
             return contents == "1";
         }
 
-        public bool Track(MixpanelEvent @event)
+        public Task<bool> Track(MixpanelEvent @event)
         {
             return Track(@event.Event, @event.Properties);
         }
 
-        public bool Track<T>(T @event)
+        public Task<bool> Track<T>(T @event)
         {
             return Track(@event.ToMixpanelEvent(_options.LiteralSerialization));
         }

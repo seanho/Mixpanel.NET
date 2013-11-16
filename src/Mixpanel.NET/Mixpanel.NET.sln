@@ -1,9 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mixpanel.NET", "Mixpanel.NET.csproj", "{352023D1-2498-44E2-B2A8-340FA959FEDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mixpanel.NET.specs", "..\Mixpanel.NET.specs\Mixpanel.NET.specs.csproj", "{08422141-78C4-405A-81C5-926A914B8B40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mixpanel.NET.Portable", "..\Mixpanel.NET.Portable\Mixpanel.NET.Portable.csproj", "{0CFE6683-5ECD-42F5-83F5-E224E492A56B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,10 @@ Global
 		{08422141-78C4-405A-81C5-926A914B8B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08422141-78C4-405A-81C5-926A914B8B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08422141-78C4-405A-81C5-926A914B8B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CFE6683-5ECD-42F5-83F5-E224E492A56B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CFE6683-5ECD-42F5-83F5-E224E492A56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CFE6683-5ECD-42F5-83F5-E224E492A56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CFE6683-5ECD-42F5-83F5-E224E492A56B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
